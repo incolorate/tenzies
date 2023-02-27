@@ -6,13 +6,31 @@ import Confetti from "react-confetti";
 function App() {
   let [dice, setDice] = useState(randomNumber);
   let [tenzies, setTenzies] = useState(false);
+  let [time, setTime] = useState(0);
+  let [timerRunning, setTimerRunning] = useState(false);
 
+  // Set counter
+  useEffect(() => {
+    let intervalId;
+    if (timerRunning) {
+      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
+      intervalId = setInterval(() => setTime(time + 1), 10);
+    }
+    return () => clearInterval(intervalId);
+  }, [timerRunning, time]);
+
+  // Minutes calculation
+  const minutes = Math.floor((time % 360000) / 6000);
+
+  // Seconds calculation
+  const seconds = Math.floor((time % 6000) / 100);
+
+  // Milliseconds calculation
   useEffect(() => {
     const checkHeld = dice.every((dice) => dice.isHeld);
     const checkValue = dice.every((part) => dice[0].value === part.value);
     if (checkHeld && checkValue) {
       setTenzies(true);
-      console.log("win");
     }
   }, [dice]);
 
@@ -45,9 +63,11 @@ function App() {
           : { ...dice, value: Math.ceil(Math.random() * 6) };
       })
     );
+    setTimerRunning(true);
     if (tenzies) {
       setDice(randomNumber);
       setTenzies((oldValue) => !oldValue);
+      setTimerRunning(false);
     }
   }
 
@@ -60,6 +80,7 @@ function App() {
       handleClick={hold}
     />
   ));
+
   return (
     <main>
       {tenzies && <Confetti />}
@@ -68,6 +89,12 @@ function App() {
         <p className="instructions">
           Roll until all dice are the same. Click each die to freeze it at its
           current value between rolls.
+        </p>
+      </div>
+      <div className="stopwatch-container">
+        <p className="stopwatch-time">
+          {minutes.toString().padStart(2, "0")}:
+          {seconds.toString().padStart(2, "0")}
         </p>
       </div>
       <div className="dice-container">

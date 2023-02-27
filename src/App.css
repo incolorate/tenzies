@@ -73,3 +73,16 @@ main {
   font-weight: 700;
   color: white;
 }
+
+/* timer */
+.stopwatch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stopwatch-time {
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+  padding: 0;
+  margin: 0;
+}
