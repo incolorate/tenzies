@@ -16,6 +16,9 @@ function App() {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
       intervalId = setInterval(() => setTime(time + 1), 10);
     }
+    if (tenzies) {
+      setTimerRunning(false);
+    }
     return () => clearInterval(intervalId);
   }, [timerRunning, time]);
 
@@ -67,7 +70,7 @@ function App() {
     if (tenzies) {
       setDice(randomNumber);
       setTenzies((oldValue) => !oldValue);
-      setTimerRunning(false);
+      setTime(0);
     }
   }
 
