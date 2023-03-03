@@ -9,18 +9,21 @@ body {
   background: #0b2434;
   padding: 20px;
   font-family: "Karla";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 /* Game container */
 main {
-  margin: 0 auto;
   background-color: #f5f5f5;
-  max-width: 800px;
+  max-width: 996px;
   height: 400px;
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
 }
 
@@ -28,23 +31,32 @@ main {
 
 .instructions {
   text-align: center;
+  margin: 0;
+}
+.instructions h1 {
+  margin: 0;
+  padding: 5px;
 }
 
+.instructions {
+  padding: 3px;
+}
 /* Dice component */
 .dice {
   font-style: normal;
   font-weight: 700;
-  font-size: 20.5889px;
+  font-size: 20px;
   text-align: center;
   color: #2b283a;
   background: #ffffff;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 3.81277px;
+  border-radius: 4px;
   width: 36px;
   height: 35.84px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 15px;
 }
 .dice p {
   padding: 0px;
@@ -53,9 +65,8 @@ main {
 
 /* Dice container */
 .dice-container {
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 36px);
+  grid-template-columns: repeat(5, 40px);
   gap: 17px;
   justify-content: center;
   justify-items: center;
@@ -72,6 +83,7 @@ main {
   font-size: 1.5rem;
   font-weight: 700;
   color: white;
+  margin-bottom: 10px;
 }
 
 /* timer */
@@ -85,4 +97,14 @@ main {
   letter-spacing: 0.3rem;
   padding: 0;
   margin: 0;
+}
+
+@media (min-width: 760px) {
+  .dice {
+    width: 50px;
+    height: 50px;
+  }
+  .dice-container {
+    grid-template-columns: repeat(5, 50px);
+  }
 }
